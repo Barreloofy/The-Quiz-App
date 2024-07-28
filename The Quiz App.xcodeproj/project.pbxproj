@@ -8,17 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		296488EA2C56E5EA00FF00E3 /* The_Quiz_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296488E92C56E5EA00FF00E3 /* The_Quiz_AppApp.swift */; };
-		296488EC2C56E5EA00FF00E3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296488EB2C56E5EA00FF00E3 /* ContentView.swift */; };
 		296488EE2C56E5EB00FF00E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 296488ED2C56E5EB00FF00E3 /* Assets.xcassets */; };
 		296488F12C56E5EB00FF00E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 296488F02C56E5EB00FF00E3 /* Preview Assets.xcassets */; };
+		296488FB2C56E69900FF00E3 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296488FA2C56E69900FF00E3 /* QuizModel.swift */; };
+		296488FD2C56E96300FF00E3 /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296488FC2C56E96300FF00E3 /* QuizData.swift */; };
+		296488FF2C56F2E000FF00E3 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296488FE2C56F2E000FF00E3 /* GameData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		296488E62C56E5EA00FF00E3 /* The Quiz App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Quiz App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		296488E92C56E5EA00FF00E3 /* The_Quiz_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_Quiz_AppApp.swift; sourceTree = "<group>"; };
-		296488EB2C56E5EA00FF00E3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		296488ED2C56E5EB00FF00E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		296488F02C56E5EB00FF00E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		296488FA2C56E69900FF00E3 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
+		296488FC2C56E96300FF00E3 /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
+		296488FE2C56F2E000FF00E3 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +56,9 @@
 			isa = PBXGroup;
 			children = (
 				296488E92C56E5EA00FF00E3 /* The_Quiz_AppApp.swift */,
-				296488EB2C56E5EA00FF00E3 /* ContentView.swift */,
+				296488F72C56E61300FF00E3 /* Views */,
+				296488F82C56E62400FF00E3 /* Model */,
+				296488F92C56E64900FF00E3 /* ViewModel */,
 				296488ED2C56E5EB00FF00E3 /* Assets.xcassets */,
 				296488EF2C56E5EB00FF00E3 /* Preview Content */,
 			);
@@ -65,6 +71,30 @@
 				296488F02C56E5EB00FF00E3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		296488F72C56E61300FF00E3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		296488F82C56E62400FF00E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				296488FA2C56E69900FF00E3 /* QuizModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		296488F92C56E64900FF00E3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				296488FC2C56E96300FF00E3 /* QuizData.swift */,
+				296488FE2C56F2E000FF00E3 /* GameData.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +167,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				296488EC2C56E5EA00FF00E3 /* ContentView.swift in Sources */,
+				296488FB2C56E69900FF00E3 /* QuizModel.swift in Sources */,
+				296488FF2C56F2E000FF00E3 /* GameData.swift in Sources */,
+				296488FD2C56E96300FF00E3 /* QuizData.swift in Sources */,
 				296488EA2C56E5EA00FF00E3 /* The_Quiz_AppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
