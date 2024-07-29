@@ -8,7 +8,15 @@
 import Foundation
 
 class QuizData: ObservableObject {
-    @Published var quizArray = [QuizModel]()
+    @Published private(set) var quizArray = [QuizModel]()
+    
+    func add() {
+        quizArray.append(QuizModel())
+    }
+    
+    func remove(_ indexSet: IndexSet) {
+        quizArray.remove(atOffsets: indexSet)
+    }
     
     private var quizDataUrl: URL {
         do {
