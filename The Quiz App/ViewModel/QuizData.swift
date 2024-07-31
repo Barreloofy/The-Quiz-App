@@ -8,7 +8,11 @@
 import Foundation
 
 class QuizData: ObservableObject {
-    @Published private(set) var quizArray = [QuizModel]()
+    @Published private(set) var quizArray = [QuizModel]() {
+        didSet {
+            save()
+        }
+    }
     
     func add() {
         quizArray.append(QuizModel())
@@ -16,6 +20,11 @@ class QuizData: ObservableObject {
     
     func remove(_ indexSet: IndexSet) {
         quizArray.remove(atOffsets: indexSet)
+    }
+    
+    func saveModifiedQuiz(_ quiz: QuizModel) {
+        guard let atIndex = quizArray.firstIndex(where: { $0.id == quiz.id }) else {return}
+        quizArray[atIndex] = quiz
     }
     
     private var quizDataUrl: URL {

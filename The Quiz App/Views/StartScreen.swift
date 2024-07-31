@@ -26,7 +26,7 @@ struct StartScreen: View {
                 } else {
                     VStack {
                         Spacer()
-                        Text("No quiz yet, let`s add some!")
+                        Text("Nothing here yet, let's add some!")
                             .multilineTextAlignment(.center)
                             .font(.system(size: 35))
                             .bold()
@@ -40,6 +40,7 @@ struct StartScreen: View {
                     Text("Quiz App")
                         .font(.system(size: 35))
                         .bold()
+                        .underline()
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {

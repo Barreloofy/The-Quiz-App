@@ -11,6 +11,7 @@ struct SheetView: View {
     
     @EnvironmentObject private var quizData: QuizData
     @Binding var isShowingSheet: Bool
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
         NavigationStack {
             ZStack {
@@ -27,27 +28,49 @@ struct SheetView: View {
                                 quizData.remove(indexSet)
                             })
                             .listRowBackground(AppColor.accent.blur(radius: 50))
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    quizData.add()
+                                }) {
+                                    Image(systemName: "plus")
+                                }
+                                Spacer()
+                            }
+                            .listRowBackground(AppColor.accent.blur(radius: 50))
                         }
                         .scrollContentBackground(.hidden)
                     } else {
                         VStack {
                             Spacer()
-                            Text("No quiz yet, let`s add some!")
+                            Text("Nothing here yet, let's add some!")
                                 .multilineTextAlignment(.center)
                                 .font(.system(size: 35))
                                 .bold()
+                            Button(action: {
+                                quizData.add()
+                            }) {
+                                Image(systemName: "plus")
+                            }
                             Spacer()
                             Spacer()
                         }
                     }
-                    Button(action: {
-                        quizData.add()
-                    }) {
-                        Image(systemName: "plus")
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("Edit")
+                        .font(.system(size: 35))
+                        .bold()
+                        .underline()
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") {
+                        dismiss()
                     }
                 }
             }
-            .navigationTitle("Edit")
         }
     }
 }

@@ -27,7 +27,7 @@
 		292A71FE2C57F1DD0094CAC2 /* ModifyQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyQuizView.swift; sourceTree = "<group>"; };
 		292A72002C57F9E60094CAC2 /* ModifyQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyQuestionView.swift; sourceTree = "<group>"; };
 		296488E62C56E5EA00FF00E3 /* The Quiz App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Quiz App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		296488E92C56E5EA00FF00E3 /* The_Quiz_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_Quiz_AppApp.swift; sourceTree = "<group>"; };
+		296488E92C56E5EA00FF00E3 /* The_Quiz_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_Quiz_AppApp.swift; sourceTree = "<group>"; usesTabs = 0; };
 		296488ED2C56E5EB00FF00E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		296488F02C56E5EB00FF00E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		296488FA2C56E69900FF00E3 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };

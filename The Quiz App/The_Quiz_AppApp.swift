@@ -15,6 +15,9 @@ struct The_Quiz_AppApp: App {
         WindowGroup {
             StartScreen()
                 .environmentObject(quizData)
+                .onAppear {
+                    quizData.load()
+                }
         }
     }
 }

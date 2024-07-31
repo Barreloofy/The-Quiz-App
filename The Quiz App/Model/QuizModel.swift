@@ -29,6 +29,15 @@ struct Question: Codable {
     var answers: [String]
     var correctAnswer: String
     
+    var pickerProvider: [String] {
+        guard let firstElement = answers.first else { return ["-"] }
+        if firstElement != "" {
+            return answers
+        } else {
+            return ["-"]
+        }
+    }
+    
     // only used for #Preview
     init(questionTitle: String, answers: [String], correctAnswer: String) {
         self.questionTitle = questionTitle

@@ -10,6 +10,7 @@ import SwiftUI
 struct ModifyQuestionView: View {
     
     @Binding var question: Question
+    @Environment (\.dismiss) private var dismiss
     var body: some View {
         ZStack {
             AppColor.background.ignoresSafeArea()
@@ -33,17 +34,41 @@ struct ModifyQuestionView: View {
                     .onDelete(perform: { indexSet in
                         question.answers.remove(atOffsets: indexSet)
                     })
-                    Button(action: {
-                        question.answers.append("")
-                    }) {
-                        Image(systemName: "plus")
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            question.answers.append("")
+                        }) {
+                            Image(systemName: "plus")
+                        }
+                        Spacer()
+                    }
+                }
+                .listRowBackground(AppColor.accent.blur(radius: 50))
+                Section("Correct Answer") {
+                    Picker("Correct Answer", selection: $question.correctAnswer) {
+                        ForEach(question.pickerProvider, id: \.self) { answers in
+                            Text(answers)
+                        }
+                    }
+                    .onChange(of: question.pickerProvider) {
+                        if question.pickerProvider != ["-"] {
+                            question.correctAnswer = question.answers.first ?? ""
+                        }
                     }
                 }
                 .listRowBackground(AppColor.accent.blur(radius: 50))
             }
             .scrollContentBackground(.hidden)
         }
-        .tint(AppColor.accent)
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Done") {
+                    dismiss()
+                }
+            }
+        }
     }
 }
 

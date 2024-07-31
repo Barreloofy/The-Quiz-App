@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ModifyQuizView: View {
     
+    @EnvironmentObject private var quizData: QuizData
     @State var quiz: QuizModel
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
         NavigationStack {
             ZStack {
@@ -25,6 +27,9 @@ struct ModifyQuizView: View {
                                 ModifyQuestionView(question: $quiz.questions[atIndex])
                             }
                         }
+                        .onDelete(perform: { indexSet in
+                            quiz.questions.remove(atOffsets: indexSet)
+                        })
                         Button(action: {
                             quiz.questions.append(Question())
                         }) {
@@ -39,7 +44,14 @@ struct ModifyQuizView: View {
                 }
                 .scrollContentBackground(.hidden)
             }
-            .tint(AppColor.accent)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Save") {
+                        quizData.saveModifiedQuiz(quiz)
+                        dismiss()
+                    }
+                }
+            }
         }
     }
 }
