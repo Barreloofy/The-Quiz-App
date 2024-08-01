@@ -18,7 +18,9 @@ struct StartScreen: View {
                 if !quizData.quizArray.isEmpty {
                     List {
                         ForEach(quizData.quizArray) { quiz in
-                            Text(quiz.title)
+                            NavigationLink("\(quiz.title)") {
+                                GameScreen(gameData: GameData(currentQuiz: quiz))
+                            }
                         }
                         .listRowBackground(AppColor.accent.blur(radius: 50))
                     }

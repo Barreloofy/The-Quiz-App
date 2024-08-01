@@ -13,8 +13,12 @@ class GameData: ObservableObject {
     private(set) var correctGuessCount = 0
     let currentQuiz: QuizModel
     
-    private var quizQuestions: [Question] {
+    var quizQuestions: [Question] {
         currentQuiz.questions
+    }
+    
+    var currentQuestion: Question {
+        quizQuestions[questionCount]
     }
     
     private var quizCorrectAnswer: String {
