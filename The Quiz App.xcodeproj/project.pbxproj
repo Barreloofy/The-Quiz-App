@@ -20,6 +20,7 @@
 		296488FF2C56F2E000FF00E3 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296488FE2C56F2E000FF00E3 /* GameData.swift */; };
 		2970387A2C5C162100B9ED01 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297038792C5C162100B9ED01 /* GameScreen.swift */; };
 		2970387D2C5C1C3000B9ED01 /* AnswerPresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970387C2C5C1C3000B9ED01 /* AnswerPresenterView.swift */; };
+		29BB97862C5E5A1F0077BD49 /* ScoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BB97852C5E5A1F0077BD49 /* ScoreScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		296488FE2C56F2E000FF00E3 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		297038792C5C162100B9ED01 /* GameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
 		2970387C2C5C1C3000B9ED01 /* AnswerPresenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerPresenterView.swift; sourceTree = "<group>"; };
+		29BB97852C5E5A1F0077BD49 /* ScoreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				292A71FB2C57EDA50094CAC2 /* StartScreenViews */,
 				297038792C5C162100B9ED01 /* GameScreen.swift */,
 				2970387B2C5C1BD800B9ED01 /* GameScreenViews */,
+				29BB97852C5E5A1F0077BD49 /* ScoreScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29BB97862C5E5A1F0077BD49 /* ScoreScreen.swift in Sources */,
 				296488FB2C56E69900FF00E3 /* QuizModel.swift in Sources */,
 				2970387A2C5C162100B9ED01 /* GameScreen.swift in Sources */,
 				292A71FD2C57EDCD0094CAC2 /* SheetView.swift in Sources */,

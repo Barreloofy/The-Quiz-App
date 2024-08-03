@@ -25,13 +25,17 @@ class GameData: ObservableObject {
         quizQuestions[questionCount].correctAnswer
     }
     
-    func increment() {
+    func increment() -> Bool {
         if questionCount < quizQuestions.count-1 {
             questionCount += 1
+            return false
+        } else {
+            return true
         }
     }
     
-    func increment(_ loggedAnswer: String) {
+    func increment(_ loggedAnswer: String?) {
+        guard let loggedAnswer = loggedAnswer else { return }
         if loggedAnswer == quizCorrectAnswer {
             correctGuessCount += 1
         }

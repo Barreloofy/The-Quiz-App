@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AnswerPresenterView: View {
     
-    let gradient = LinearGradient(stops: [.init(color: .white.opacity(0.3), location: 0),.init(color: .orange.opacity(0.5), location: 0.4),.init(color: .orange, location: 0.5)], startPoint: .topLeading, endPoint: .bottomTrailing)
     var question: Question
+    @Binding var loggedAnswer: String?
     var body: some View {
         LazyHGrid(rows: Array(repeating: GridItem(.fixed(50)), count: 2)) {
             ForEach(question.answers, id: \.self) { answer in
@@ -19,12 +19,17 @@ struct AnswerPresenterView: View {
                         length / 3
                     }
                     .padding(5)
-                    .border(gradient, width: 3)
+                    .border(AppColor.gradient, width: 3)
+                    .padding(5)
+                    .border(loggedAnswer == answer ? .black : .clear, width: 2)
+                    .onTapGesture {
+                        loggedAnswer = answer
+                    }
             }
         }
     }
 }
 
 #Preview {
-    AnswerPresenterView(question: Question(questionTitle: "Test Question", answers: ["Answer 1","Answer 2","Answer 3","Answer 4"], correctAnswer: "Answer 1"))
+    AnswerPresenterView(question: Question(questionTitle: "Test Question", answers: ["Answer 1","Answer 2","Answer 3","Answer 4"], correctAnswer: "Answer 1"),loggedAnswer: .constant(nil))
 }
