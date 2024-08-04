@@ -15,10 +15,37 @@ struct ScoreScreen: View {
             ZStack {
                 AppColor.background.ignoresSafeArea()
                 VStack {
-                    Text("\(gameData.questionCount)")
+                    HStack {
+                        Text("\(gameData.correctGuessCount)")
+                        Text("/")
+                        Text("\(gameData.quizQuestions.count)")
+                    }
+                        .padding(.top,100)
+                        .bold()
+                        .font(.system(size: 20))
+                    Text(gameData.scoreMessage())
+                        .padding(5)
+                        .bold()
+                        .font(.system(size: 20))
+                        .underline()
+                    Spacer()
+                    NavigationLink(destination: GameScreen(gameData: GameData(currentQuiz: gameData.currentQuiz))) {
+                        Text("Play again!")
+                            .bold()
+                            .font(.system(size: 25))
+                    }
+                    .padding(25)
+                    NavigationLink(destination: StartScreen()) {
+                        Text("Home")
+                            .bold()
+                            .font(.system(size: 25))
+                    }
+                    Spacer()
+                    Spacer()
                 }
             }
             .navigationBarBackButtonHidden()
+            .tint(AppColor.accent)
         }
     }
 }

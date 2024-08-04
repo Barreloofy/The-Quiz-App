@@ -14,6 +14,18 @@ class QuizData: ObservableObject {
         }
     }
     
+    var validQuizArray: [QuizModel] {
+        var array = [QuizModel]()
+        for quiz in quizArray {
+            if quiz.title.isEmpty || quiz.questions.isEmpty || quiz.questions[0].questionTitle.isEmpty || (quiz.questions[0].answers.isEmpty || quiz.questions[0].answers[0] == "") {
+                continue
+            } else {
+                array.append(quiz)
+            }
+        }
+        return array
+    }
+    
     func add() {
         quizArray.append(QuizModel())
     }

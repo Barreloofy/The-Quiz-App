@@ -17,7 +17,7 @@ struct StartScreen: View {
                 AppColor.background.ignoresSafeArea()
                 if !quizData.quizArray.isEmpty {
                     List {
-                        ForEach(quizData.quizArray) { quiz in
+                        ForEach(quizData.validQuizArray) { quiz in
                             NavigationLink("\(quiz.title)") {
                                 GameScreen(gameData: GameData(currentQuiz: quiz))
                             }
@@ -56,6 +56,7 @@ struct StartScreen: View {
                 }
             }
             .tint(AppColor.accent)
+            .navigationBarBackButtonHidden()
         }
     }
 }

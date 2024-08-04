@@ -35,9 +35,25 @@ class GameData: ObservableObject {
     }
     
     func increment(_ loggedAnswer: String?) {
-        guard let loggedAnswer = loggedAnswer else { return }
-        if loggedAnswer == quizCorrectAnswer {
+        guard let answer = loggedAnswer else { return }
+        if answer == quizCorrectAnswer {
             correctGuessCount += 1
+        }
+    }
+    
+    func scoreMessage() -> String {
+        let score = Double(correctGuessCount) / Double(quizQuestions.count)
+        switch score {
+        case 1.0:
+            return "Perfect score!"
+        case 0.8...0.99:
+            return "Great job!"
+        case 0.5...0.79:
+            return "Good effort!"
+        case 0.0...0.49:
+            return "Keep trying!"
+        default:
+            return "Invalid score"
         }
     }
     
