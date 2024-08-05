@@ -12,6 +12,7 @@ struct ModifyQuizView: View {
     @EnvironmentObject private var quizData: QuizData
     @State var quiz: QuizModel
     @Environment(\.dismiss) private var dismiss
+    @State private var showAlert = false
     var body: some View {
         NavigationStack {
             ZStack {
@@ -47,8 +48,16 @@ struct ModifyQuizView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
-                        quizData.saveModifiedQuiz(quiz)
-                        dismiss()
+                        if quiz.title.isEmpty || quiz.questions.isEmpty || quiz.questions[0].questionTitle.isEmpty || (quiz.questions[0].answers.isEmpty || quiz.questions[0].answers[0] == "") {
+                            showAlert.toggle()
+                        } else {
+                            quizData.saveModifiedQuiz(quiz)
+                            dismiss()
+                        }
+                    }
+                    .alert("A quiz needs a title, questions, and answers.", isPresented: $showAlert) {
+                        Button("OK") {}
+                            .tint(AppColor.accent)
                     }
                 }
             }
