@@ -13,6 +13,11 @@ struct QuizModel: Identifiable,Codable {
     var title: String
     var questions: [Question]
     
+    func titleIsEmpty(_ atIndex: Int) -> (Bool, String) {
+        let title = questions[atIndex].questionTitle
+        return title.isEmpty ? (true,"") : (false,title)
+    }
+    
     // only used for #preview
     init(title: String, questions: [Question]) {
         self.title = title

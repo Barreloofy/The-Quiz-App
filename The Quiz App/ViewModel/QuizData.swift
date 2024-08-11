@@ -14,6 +14,10 @@ class QuizData: ObservableObject {
         }
     }
     
+    var emptyArray: Bool {
+        quizArray.isEmpty ? true : false
+    }
+    
     var validQuizArray: [QuizModel] {
         var array = [QuizModel]()
         for quiz in quizArray {

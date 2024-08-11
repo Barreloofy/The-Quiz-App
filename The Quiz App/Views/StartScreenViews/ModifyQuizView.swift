@@ -24,7 +24,8 @@ struct ModifyQuizView: View {
                     .listRowBackground(AppColor.accent.blur(radius: 50))
                     Section("Question & Answers") {
                         ForEach(quiz.questions.indices, id: \.self) { atIndex in
-                            NavigationLink("\(quiz.questions[atIndex].questionTitle.isEmpty ? "New Question" : quiz.questions[atIndex].questionTitle)") {
+                            let (isEmpty,title) = quiz.titleIsEmpty(atIndex)
+                            NavigationLink("\(isEmpty ? "New Question" : title)") {
                                 ModifyQuestionView(question: $quiz.questions[atIndex])
                             }
                         }

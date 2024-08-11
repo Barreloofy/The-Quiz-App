@@ -19,6 +19,9 @@ struct GameScreen: View {
                 VStack {
                     HStack {
                         Text("\(gameData.questionCount+1)")
+                            .onChange(of: gameData.questionCount) {
+                                loggedAnswer = nil
+                            }
                         Text("/")
                         Text("\(gameData.quizQuestions.count)")
                     }
@@ -42,15 +45,10 @@ struct GameScreen: View {
                             gameData.increment(loggedAnswer)
                             presentScore = gameData.increment()
                         }) {
-                            if loggedAnswer != nil {
-                                Text("Next")
-                                    .bold()
-                            } else {
-                                Text("Next")
-                                    .bold()
-                                    .opacity(0.5)
-                                    .foregroundStyle(.gray)
-                            }
+                            Text("Next")
+                                .bold()
+                                .opacity(loggedAnswer != nil ? 1 : 0.5)
+                                .foregroundStyle(loggedAnswer != nil ? .black : .gray)
                         }
                     }
                 }
