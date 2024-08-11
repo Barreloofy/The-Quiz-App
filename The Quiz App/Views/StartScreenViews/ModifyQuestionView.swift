@@ -29,7 +29,7 @@ struct ModifyQuestionView: View {
                 .listRowBackground(AppColor.accent.blur(radius: 50))
                 Section("Answers") {
                     ForEach(question.answers.indices, id: \.self) { atIndex in
-                        TextField("Answer", text: $question.answers[atIndex])
+                        TextField("Answer", text: $question.answers[atIndex].answer)
                     }
                     .onDelete(perform: { indexSet in
                         question.answers.remove(atOffsets: indexSet)
@@ -37,7 +37,7 @@ struct ModifyQuestionView: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            question.answers.append("")
+                            question.answers.append(Answer(answer: ""))
                         }) {
                             Image(systemName: "plus")
                         }
@@ -53,7 +53,7 @@ struct ModifyQuestionView: View {
                     }
                     .onChange(of: question.pickerProvider) {
                         if question.pickerProvider != ["-"] {
-                            question.correctAnswer = question.answers.first ?? ""
+                            question.correctAnswer = question.answers.first?.answer ?? ""
                         }
                     }
                 }
@@ -73,5 +73,5 @@ struct ModifyQuestionView: View {
 }
 
 #Preview {
-    ModifyQuestionView(question: .constant(Question(questionTitle: "Test Question", answers: ["Yes","No","Maybe"], correctAnswer: "Yes")))
+    ModifyQuestionView(question: .constant(Question(questionTitle: "Test Question", answers: [Answer(answer: "Yes"),Answer(answer: "No"),Answer(answer: "Maybe")], correctAnswer: "Yes")))
 }

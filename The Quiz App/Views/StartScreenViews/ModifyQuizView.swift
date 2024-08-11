@@ -23,10 +23,10 @@ struct ModifyQuizView: View {
                     }
                     .listRowBackground(AppColor.accent.blur(radius: 50))
                     Section("Question & Answers") {
-                        ForEach(quiz.questions.indices, id: \.self) { atIndex in
-                            let (isEmpty,title) = quiz.titleIsEmpty(atIndex)
+                        ForEach(quiz.questions) { question in
+                            let (isEmpty,title) = quiz.titleIsEmpty(question)
                             NavigationLink("\(isEmpty ? "New Question" : title)") {
-                                ModifyQuestionView(question: $quiz.questions[atIndex])
+                                ModifyQuestionView(question: $quiz.questions[quiz.returnIndex(question)!])
                             }
                         }
                         .onDelete(perform: { indexSet in
@@ -49,7 +49,7 @@ struct ModifyQuizView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
-                        if quiz.title.isEmpty || quiz.questions.isEmpty || quiz.questions[0].questionTitle.isEmpty || (quiz.questions[0].answers.isEmpty || quiz.questions[0].answers[0] == "") {
+                        if quiz.title.isEmpty || quiz.questions.isEmpty || quiz.questions[0].questionTitle.isEmpty || (quiz.questions[0].answers.isEmpty || quiz.questions[0].answers[0].answer == "") {
                             showAlert.toggle()
                         } else {
                             quizData.saveModifiedQuiz(quiz)
@@ -67,5 +67,5 @@ struct ModifyQuizView: View {
 }
 
 #Preview {
-    ModifyQuizView(quiz: QuizModel(title: "Test Quiz", questions: [Question(questionTitle: "Test Question", answers: ["Yes","No"], correctAnswer: "Yes")]))
+    ModifyQuizView(quiz: QuizModel(title: "Test Quiz", questions: [Question(questionTitle: "Test Question", answers: [Answer(answer: "Yes"),Answer(answer: "No")], correctAnswer: "Yes")]))
 }

@@ -18,6 +18,16 @@ struct QuizModel: Identifiable,Codable {
         return title.isEmpty ? (true,"") : (false,title)
     }
     
+    func titleIsEmpty(_ question: Question) -> (Bool, String) {
+        let title = question.questionTitle
+        return title.isEmpty ? (true,"") : (false,title)
+    }
+    
+    func returnIndex(_ question: Question) -> Int? {
+        guard let index = questions.firstIndex(where: {$0.id == question.id}) else { return nil }
+        return index
+    }
+    
     // only used for #preview
     init(title: String, questions: [Question]) {
         self.title = title
@@ -29,29 +39,56 @@ struct QuizModel: Identifiable,Codable {
     }
 }
 
-struct Question: Codable {
+struct Question: Identifiable,Codable {
+    var id = UUID()
+    
     var questionTitle: String
-    var answers: [String]
+    var answers: [Answer]
     var correctAnswer: String
     
     var pickerProvider: [String] {
         guard let firstElement = answers.first else { return ["-"] }
-        if firstElement != "" {
-            return answers
+        if firstElement.answer != "" {
+            var answerArray = [String]()
+            for answer in answers {
+                answerArray.append(answer.answer)
+            }
+            return answerArray
         } else {
             return ["-"]
         }
     }
     
+    enum CodingKeys: String,CodingKey {
+        case id
+        case questionTitle
+        case answers
+        case correctAnswer
+    }
+    
+    init(from decoder: Decoder) throws {
+        let value = try decoder.container(keyedBy: CodingKeys.self)
+        id = try value.decodeIfPresent(UUID.self, forKey: .id) ?? UUID()
+        questionTitle = try value.decode(String.self, forKey: .questionTitle)
+        answers = try value.decode([Answer].self, forKey: .answers)
+        correctAnswer = try value.decode(String.self, forKey: .correctAnswer)
+    }
+    
     // only used for #Preview
-    init(questionTitle: String, answers: [String], correctAnswer: String) {
+    init(questionTitle: String, answers: [Answer], correctAnswer: String) {
         self.questionTitle = questionTitle
         self.answers = answers
         self.correctAnswer = correctAnswer
     }
     init() {
         questionTitle = ""
-        answers = [String]()
+        answers = [Answer]()
         correctAnswer = ""
     }
+}
+
+struct Answer: Identifiable,Codable {
+    var id = UUID()
+    
+    var answer: String
 }

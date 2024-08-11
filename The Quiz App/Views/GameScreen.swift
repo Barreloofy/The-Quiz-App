@@ -60,5 +60,5 @@ struct GameScreen: View {
 }
 
 #Preview {
-    GameScreen(gameData: GameData(currentQuiz: QuizModel(title: "Test Quiz", questions: [Question(questionTitle: "Test Question", answers: ["Yes","No"], correctAnswer: "Yes")])))
+    GameScreen(gameData: GameData(currentQuiz: QuizModel(title: "Test Quiz", questions: [Question(questionTitle: "Test Question", answers: [Answer(answer: "Yes"),Answer(answer: "No")], correctAnswer: "Yes")])))
 }
