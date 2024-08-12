@@ -15,7 +15,7 @@ struct StartScreen: View {
         NavigationStack {
             ZStack {
                 AppColor.background.ignoresSafeArea()
-                if !quizData.emptyArray {
+                if !quizData.validQuizArray.isEmpty {
                     List {
                         ForEach(quizData.validQuizArray) { quiz in
                             NavigationLink("\(quiz.title)") {

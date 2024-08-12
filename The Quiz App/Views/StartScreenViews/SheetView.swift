@@ -17,7 +17,7 @@ struct SheetView: View {
             ZStack {
                 AppColor.background.ignoresSafeArea()
                 VStack {
-                    if !quizData.emptyArray {
+                    if !quizData.empty {
                         List {
                             ForEach(quizData.quizArray) { quiz in
                                 NavigationLink("\(quiz.title.isEmpty ? "New Quiz" : quiz.title)") {

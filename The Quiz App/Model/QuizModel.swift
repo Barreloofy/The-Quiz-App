@@ -13,19 +13,18 @@ struct QuizModel: Identifiable,Codable {
     var title: String
     var questions: [Question]
     
-    func titleIsEmpty(_ atIndex: Int) -> (Bool, String) {
-        let title = questions[atIndex].questionTitle
-        return title.isEmpty ? (true,"") : (false,title)
-    }
-    
     func titleIsEmpty(_ question: Question) -> (Bool, String) {
         let title = question.questionTitle
         return title.isEmpty ? (true,"") : (false,title)
     }
     
     func returnIndex(_ question: Question) -> Int? {
-        guard let index = questions.firstIndex(where: {$0.id == question.id}) else { return nil }
+        guard let index = questions.firstIndex(where: { $0.id == question.id }) else { return nil }
         return index
+    }
+    
+    func validQuiz() -> Bool {
+        self.title.isEmpty || self.questions.isEmpty || self.questions[0].questionTitle.isEmpty || (self.questions[0].answers.isEmpty || self.questions[0].answers[0].answerText == "") ? true : false
     }
     
     // only used for #preview
@@ -48,15 +47,20 @@ struct Question: Identifiable,Codable {
     
     var pickerProvider: [String] {
         guard let firstElement = answers.first else { return ["-"] }
-        if firstElement.answer != "" {
+        if firstElement.answerText != "" {
             var answerArray = [String]()
             for answer in answers {
-                answerArray.append(answer.answer)
+                answerArray.append(answer.answerText)
             }
             return answerArray
         } else {
             return ["-"]
         }
+    }
+    
+    func returnIndex(_ answer: Answer) -> Int? {
+        guard let index = self.answers.firstIndex(where: { $0.id == answer.id }) else { return nil }
+        return index
     }
     
     enum CodingKeys: String,CodingKey {
@@ -90,5 +94,5 @@ struct Question: Identifiable,Codable {
 struct Answer: Identifiable,Codable {
     var id = UUID()
     
-    var answer: String
+    var answerText: String
 }

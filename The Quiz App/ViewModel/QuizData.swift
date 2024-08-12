@@ -14,14 +14,14 @@ class QuizData: ObservableObject {
         }
     }
     
-    var emptyArray: Bool {
+    var empty: Bool {
         quizArray.isEmpty ? true : false
     }
     
     var validQuizArray: [QuizModel] {
         var array = [QuizModel]()
         for quiz in quizArray {
-            if quiz.title.isEmpty || quiz.questions.isEmpty || quiz.questions[0].questionTitle.isEmpty || (quiz.questions[0].answers.isEmpty || quiz.questions[0].answers[0].answer == "") {
+            if quiz.title.isEmpty || quiz.questions.isEmpty || quiz.questions[0].questionTitle.isEmpty || (quiz.questions[0].answers.isEmpty || quiz.questions[0].answers[0].answerText == "") {
                 continue
             } else {
                 array.append(quiz)

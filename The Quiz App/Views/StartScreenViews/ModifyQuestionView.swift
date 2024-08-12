@@ -28,8 +28,8 @@ struct ModifyQuestionView: View {
                 }
                 .listRowBackground(AppColor.accent.blur(radius: 50))
                 Section("Answers") {
-                    ForEach(question.answers.indices, id: \.self) { atIndex in
-                        TextField("Answer", text: $question.answers[atIndex].answer)
+                    ForEach(question.answers) { answer in
+                        TextField("Answer", text: $question.answers[question.returnIndex(answer)!].answerText)
                     }
                     .onDelete(perform: { indexSet in
                         question.answers.remove(atOffsets: indexSet)
@@ -37,7 +37,7 @@ struct ModifyQuestionView: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            question.answers.append(Answer(answer: ""))
+                            question.answers.append(Answer(answerText: ""))
                         }) {
                             Image(systemName: "plus")
                         }
@@ -45,19 +45,21 @@ struct ModifyQuestionView: View {
                     }
                 }
                 .listRowBackground(AppColor.accent.blur(radius: 50))
-                Section("Correct Answer") {
-                    Picker("Correct Answer", selection: $question.correctAnswer) {
+                Section("") {
+                    Picker("Correct Answer:", selection: $question.correctAnswer) {
                         ForEach(question.pickerProvider, id: \.self) { answers in
                             Text(answers)
                         }
                     }
                     .onChange(of: question.pickerProvider) {
                         if question.pickerProvider != ["-"] {
-                            question.correctAnswer = question.answers.first?.answer ?? ""
+                            question.correctAnswer = question.answers.first?.answerText ?? ""
                         }
                     }
                 }
                 .listRowBackground(AppColor.accent.blur(radius: 50))
+                .tint(AppColor.accent).contrast(1.2)
+                .pickerStyle(InlinePickerStyle())
             }
             .scrollContentBackground(.hidden)
         }
@@ -73,5 +75,5 @@ struct ModifyQuestionView: View {
 }
 
 #Preview {
-    ModifyQuestionView(question: .constant(Question(questionTitle: "Test Question", answers: [Answer(answer: "Yes"),Answer(answer: "No"),Answer(answer: "Maybe")], correctAnswer: "Yes")))
+    ModifyQuestionView(question: .constant(Question(questionTitle: "Test Question", answers: [Answer(answerText: "Yes"),Answer(answerText: "No"),Answer(answerText: "Maybe")], correctAnswer: "Yes")))
 }

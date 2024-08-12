@@ -14,16 +14,16 @@ struct AnswerPresenterView: View {
     var body: some View {
         LazyHGrid(rows: Array(repeating: GridItem(.fixed(50)), count: 2)) {
             ForEach(question.answers) { answer in
-                Text(answer.answer)
+                Text(answer.answerText)
                     .containerRelativeFrame(.horizontal) { length, _ in
                         length / 3
                     }
                     .padding(5)
                     .border(AppColor.gradient, width: 3)
                     .padding(5)
-                    .border(loggedAnswer == answer.answer ? .black : .clear, width: 2)
+                    .border(loggedAnswer == answer.answerText ? .black : .clear, width: 2)
                     .onTapGesture {
-                        loggedAnswer = answer.answer
+                        loggedAnswer = answer.answerText
                     }
             }
         }
@@ -31,5 +31,5 @@ struct AnswerPresenterView: View {
 }
 
 #Preview {
-    AnswerPresenterView(question: Question(questionTitle: "Test Question", answers: [Answer(answer: "Answer 1"),Answer(answer: "Answer 2"),Answer(answer: "Answer  3"),Answer(answer: "Answer 4")], correctAnswer: "Answer 1"),loggedAnswer: .constant(nil))
+    AnswerPresenterView(question: Question(questionTitle: "Test Question", answers: [Answer(answerText: "Answer 1"),Answer(answerText: "Answer 2"),Answer(answerText: "Answer  3"),Answer(answerText: "Answer 4")], correctAnswer: "Answer 1"),loggedAnswer: .constant(nil))
 }

@@ -49,14 +49,14 @@ struct ModifyQuizView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
-                        if quiz.title.isEmpty || quiz.questions.isEmpty || quiz.questions[0].questionTitle.isEmpty || (quiz.questions[0].answers.isEmpty || quiz.questions[0].answers[0].answer == "") {
+                        if quiz.validQuiz() {
                             showAlert.toggle()
                         } else {
                             quizData.saveModifiedQuiz(quiz)
                             dismiss()
                         }
                     }
-                    .alert("A quiz needs a title, questions, and answers.", isPresented: $showAlert) {
+                    .alert("A quiz needs a title, question, and answer.", isPresented: $showAlert) {
                         Button("OK") {}
                             .tint(AppColor.accent)
                     }
@@ -67,5 +67,5 @@ struct ModifyQuizView: View {
 }
 
 #Preview {
-    ModifyQuizView(quiz: QuizModel(title: "Test Quiz", questions: [Question(questionTitle: "Test Question", answers: [Answer(answer: "Yes"),Answer(answer: "No")], correctAnswer: "Yes")]))
+    ModifyQuizView(quiz: QuizModel(title: "Test Quiz", questions: [Question(questionTitle: "Test Question", answers: [Answer(answerText: "Yes"),Answer(answerText: "No")], correctAnswer: "Yes")]))
 }
