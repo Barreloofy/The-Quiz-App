@@ -28,18 +28,11 @@ struct SheetView: View {
                                 quizData.remove(indexSet)
                             })
                             .listRowBackground(AppColor.accent.blur(radius: 50))
-                            HStack {
-                                Spacer()
-                                Button(action: {
-                                    quizData.add()
-                                }) {
-                                    Image(systemName: "plus")
-                                }
-                                Spacer()
-                            }
-                            .listRowBackground(AppColor.accent.blur(radius: 50))
+                            AddButton(title: "Add Quiz", action: { quizData.add() })
+                            .listRowBackground(Color.clear)
                         }
                         .scrollContentBackground(.hidden)
+                        .listRowSpacing(10)
                     } else {
                         VStack {
                             Spacer()
@@ -47,11 +40,8 @@ struct SheetView: View {
                                 .multilineTextAlignment(.center)
                                 .font(.system(size: 35))
                                 .bold()
-                            Button(action: {
-                                quizData.add()
-                            }) {
-                                Image(systemName: "plus")
-                            }
+                            AddButton(title: "Add Quiz", action: { quizData.add() })
+                            .padding()
                             Spacer()
                             Spacer()
                         }

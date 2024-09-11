@@ -1,5 +1,5 @@
 //
-//  StartScreen.swift
+//  StartScene.swift
 //  The Quiz App
 //
 //  Created by Nils on 7/29/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StartScreen: View {
+struct StartScene: View {
     
     @EnvironmentObject private var quizData: QuizData
     @State private var isShowingSheet = false
@@ -19,7 +19,7 @@ struct StartScreen: View {
                     List {
                         ForEach(quizData.validQuizArray) { quiz in
                             NavigationLink("\(quiz.title)") {
-                                GameScreen(gameData: GameData(currentQuiz: quiz))
+                                GameScene(gameData: GameData(currentQuiz: quiz))
                             }
                         }
                         .listRowBackground(AppColor.accent.blur(radius: 50))
@@ -48,7 +48,7 @@ struct StartScreen: View {
                     Button(action: {
                         isShowingSheet.toggle()
                     }) {
-                        Image(systemName: "lightspectrum.horizontal")
+                        Image(systemName: "plus.app")
                     }
                     .sheet(isPresented: $isShowingSheet) {
                         SheetView(isShowingSheet: $isShowingSheet)
@@ -62,6 +62,6 @@ struct StartScreen: View {
 }
 
 #Preview {
-    StartScreen()
+    StartScene()
         .environmentObject(QuizData())
 }

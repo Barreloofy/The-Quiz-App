@@ -13,7 +13,7 @@ struct The_Quiz_AppApp: App {
     @StateObject private var quizData = QuizData()
     var body: some Scene {
         WindowGroup {
-            StartScreen()
+            StartScene()
                 .environmentObject(quizData)
                 .onAppear {
                     quizData.load()

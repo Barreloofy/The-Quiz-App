@@ -32,19 +32,13 @@ struct ModifyQuizView: View {
                         .onDelete(perform: { indexSet in
                             quiz.questions.remove(atOffsets: indexSet)
                         })
-                        Button(action: {
-                            quiz.questions.append(Question())
-                        }) {
-                            HStack {
-                                Spacer()
-                                Image(systemName: "plus")
-                                Spacer()
-                            }
-                        }
+                        AddButton(title: "Add Question", action: { quiz.questions.append(Question()) })
+                        .listRowBackground(Color.clear)
                     }
                     .listRowBackground(AppColor.accent.blur(radius: 50))
                 }
                 .scrollContentBackground(.hidden)
+                .listRowSpacing(10)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -67,5 +61,5 @@ struct ModifyQuizView: View {
 }
 
 #Preview {
-    ModifyQuizView(quiz: QuizModel(title: "Test Quiz", questions: [Question(questionTitle: "Test Question", answers: [Answer(answerText: "Yes"),Answer(answerText: "No")], correctAnswer: "Yes")]))
+    ModifyQuizView(quiz: QuizModel.testQuiz)
 }

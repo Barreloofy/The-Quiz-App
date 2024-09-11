@@ -27,11 +27,7 @@ struct QuizModel: Identifiable,Codable {
         self.title.isEmpty || self.questions.isEmpty || self.questions[0].questionTitle.isEmpty || (self.questions[0].answers.isEmpty || self.questions[0].answers[0].answerText == "") ? true : false
     }
     
-    // only used for #preview
-    init(title: String, questions: [Question]) {
-        self.title = title
-        self.questions = questions
-    }
+    
     init() {
         title = ""
         questions = [Question]()
@@ -78,17 +74,12 @@ struct Question: Identifiable,Codable {
         correctAnswer = try value.decode(String.self, forKey: .correctAnswer)
     }
     
-    // only used for #Preview
-    init(questionTitle: String, answers: [Answer], correctAnswer: String) {
-        self.questionTitle = questionTitle
-        self.answers = answers
-        self.correctAnswer = correctAnswer
-    }
-    init() {
+        init() {
         questionTitle = ""
         answers = [Answer]()
         correctAnswer = ""
     }
+    
 }
 
 struct Answer: Identifiable,Codable {
@@ -96,3 +87,26 @@ struct Answer: Identifiable,Codable {
     
     var answerText: String
 }
+
+#if DEBUG
+extension Question {
+    
+    init(questionTitle: String, answers: [Answer], correctAnswer: String) {
+        self.questionTitle = questionTitle
+        self.answers = answers
+        self.correctAnswer = correctAnswer
+    }
+    
+    static let testQuestion = Question(questionTitle: "Test Question", answers: [Answer(answerText: "Yes"),Answer(answerText: "No"),Answer(answerText: "Maybe")], correctAnswer: "Yes")
+}
+
+extension QuizModel {
+    init(title: String, questions: [Question]) {
+        self.title = title
+        self.questions = questions
+    }
+    
+    static let testQuiz = QuizModel(title: "Test Quiz", questions: [Question.testQuestion])
+}
+
+#endif

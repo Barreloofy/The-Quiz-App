@@ -1,5 +1,5 @@
 //
-//  GameScreen.swift
+//  GameScene.swift
 //  The Quiz App
 //
 //  Created by Nils on 8/1/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GameScreen: View {
+struct GameScene: View {
     
     @StateObject var gameData: GameData
     @State private var loggedAnswer: String? = nil
@@ -36,7 +36,7 @@ struct GameScreen: View {
                     Spacer()
                     AnswerPresenterView(question: gameData.currentQuestion,loggedAnswer: $loggedAnswer)
                     if presentScore {
-                        NavigationLink(destination: ScoreScreen().environmentObject(gameData)) {
+                        NavigationLink(destination: ScoreScene().environmentObject(gameData)) {
                             Text("Score")
                                 .bold()
                         }
@@ -60,5 +60,5 @@ struct GameScreen: View {
 }
 
 #Preview {
-    GameScreen(gameData: GameData(currentQuiz: QuizModel(title: "Test Quiz", questions: [Question(questionTitle: "Test Question", answers: [Answer(answerText: "Yes"),Answer(answerText: "No")], correctAnswer: "Yes")])))
+    GameScene(gameData: GameData(currentQuiz: QuizModel(title: "Test Quiz", questions: [Question(questionTitle: "Test Question", answers: [Answer(answerText: "Yes"),Answer(answerText: "No")], correctAnswer: "Yes")])))
 }

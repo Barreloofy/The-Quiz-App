@@ -1,5 +1,5 @@
 //
-//  ScoreScreen.swift
+//  ScoreScene.swift
 //  The Quiz App
 //
 //  Created by Nils on 8/3/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ScoreScreen: View {
+struct ScoreScene: View {
     
     @EnvironmentObject private var gameData: GameData
     var body: some View {
@@ -29,13 +29,13 @@ struct ScoreScreen: View {
                         .font(.system(size: 20))
                         .underline()
                     Spacer()
-                    NavigationLink(destination: GameScreen(gameData: GameData(currentQuiz: gameData.currentQuiz))) {
+                    NavigationLink(destination: GameScene(gameData: GameData(currentQuiz: gameData.currentQuiz))) {
                         Text("Play again!")
                             .bold()
                             .font(.system(size: 25))
                     }
                     .padding(25)
-                    NavigationLink(destination: StartScreen()) {
+                    NavigationLink(destination: StartScene()) {
                         Text("Home")
                             .bold()
                             .font(.system(size: 25))
@@ -51,6 +51,6 @@ struct ScoreScreen: View {
 }
 
 #Preview {
-    ScoreScreen()
+    ScoreScene()
         .environmentObject(GameData(currentQuiz: QuizModel()))
 }
