@@ -1,16 +1,16 @@
 //
-//  ModifyQuestionView.swift
+//  EditQuestionView.swift
 //  The Quiz App
 //
-//  Created by Nils on 9/12/24.
+//  Created by Nils on 7/29/24.
 //
 
 import SwiftUI
 
-struct ModifyQuestionView: View {
+struct EditQuestionView: View {
     
     @Binding var question: Question
-    @Environment (\.dismiss) private var dismiss
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
         ZStack {
             AppColor.background.ignoresSafeArea()
@@ -28,9 +28,9 @@ struct ModifyQuestionView: View {
                         }
                     }
                     
-                    Section("Answers") {
-                        ForEach(question.answers) { answer in
-                            TextField("Answer", text: $question.answers[question.returnIndex(answer)!].answerText)
+                    Section("Answer") {
+                        ForEach(question.answers.indices, id: \.self) { index in
+                            TextField("Answer", text: $question.answers[index].answerText)
                         }
                         .onDelete(perform: { indexSet in
                             question.answers.remove(atOffsets: indexSet)
@@ -39,21 +39,16 @@ struct ModifyQuestionView: View {
                     
                     Section {
                         AddButton(title: "Add Answer", action: { question.answers.append(Answer(answerText: "")) })
-                        .listRowBackground(Color.clear)
+                            .listRowBackground(Color.clear)
                     }
                     
                     Section("Correct Answer") {
                         Picker("", selection: $question.correctAnswer) {
-                            ForEach(question.pickerProvider, id: \.self) { answers in
-                                Text(answers)
+                            ForEach(question.answers) { answer in
+                                Text(answer.answerText)
                             }
                         }
                         .labelsHidden()
-                        .onChange(of: question.pickerProvider) {
-                            if question.pickerProvider != ["-"] {
-                                question.correctAnswer = question.answers.first?.answerText ?? ""
-                            }
-                        }
                     }
                     .tint(AppColor.accent).contrast(1.2)
                     .pickerStyle(InlinePickerStyle())
@@ -74,5 +69,5 @@ struct ModifyQuestionView: View {
 }
 
 #Preview {
-    ModifyQuestionView(question: .constant(Question.testQuestion))
+    EditQuestionView(question: .constant(Question.testQuestion))
 }

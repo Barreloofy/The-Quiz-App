@@ -27,7 +27,7 @@ struct ModifyQuizView: View {
                         ForEach(quiz.questions) { question in
                             let (isEmpty,title) = question.titleIsEmpty()
                             NavigationLink("\(isEmpty ? "New Question" : title)") {
-                                //ModifyQuestionView(question: $quiz.questions[quiz.returnIndex(question)!])
+                                EditQuestionView(question: $quiz.questions[quiz.returnIndex(question)!])
                             }
                         }
                         .onDelete(perform: { indexSet in

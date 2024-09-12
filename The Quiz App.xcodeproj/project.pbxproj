@@ -17,11 +17,11 @@
 		296488FB2C56E69900FF00E3 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296488FA2C56E69900FF00E3 /* Quiz.swift */; };
 		296488FD2C56E96300FF00E3 /* QuizArrayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296488FC2C56E96300FF00E3 /* QuizArrayViewModel.swift */; };
 		296488FF2C56F2E000FF00E3 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296488FE2C56F2E000FF00E3 /* GameViewModel.swift */; };
-		296ED5EB2C9382320047544C /* ModifyQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED5EA2C9382320047544C /* ModifyQuestionView.swift */; };
 		2970387A2C5C162100B9ED01 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297038792C5C162100B9ED01 /* GameScene.swift */; };
 		2970387D2C5C1C3000B9ED01 /* AnswerPresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970387C2C5C1C3000B9ED01 /* AnswerPresenterView.swift */; };
 		29BB97862C5E5A1F0077BD49 /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BB97852C5E5A1F0077BD49 /* ScoreScene.swift */; };
 		29DB480F2C91E206001A3C22 /* AddButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DB480E2C91E206001A3C22 /* AddButtonStyle.swift */; };
+		29E859912C93887D008BA34E /* EditQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E859902C93887D008BA34E /* EditQuestionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,11 +36,11 @@
 		296488FA2C56E69900FF00E3 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		296488FC2C56E96300FF00E3 /* QuizArrayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizArrayViewModel.swift; sourceTree = "<group>"; };
 		296488FE2C56F2E000FF00E3 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
-		296ED5EA2C9382320047544C /* ModifyQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyQuestionView.swift; sourceTree = "<group>"; };
 		297038792C5C162100B9ED01 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		2970387C2C5C1C3000B9ED01 /* AnswerPresenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerPresenterView.swift; sourceTree = "<group>"; };
 		29BB97852C5E5A1F0077BD49 /* ScoreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
 		29DB480E2C91E206001A3C22 /* AddButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonStyle.swift; sourceTree = "<group>"; };
+		29E859902C93887D008BA34E /* EditQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuestionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +68,7 @@
 			children = (
 				292A71FC2C57EDCD0094CAC2 /* SheetView.swift */,
 				292A71FE2C57F1DD0094CAC2 /* ModifyQuizView.swift */,
-				296ED5EA2C9382320047544C /* ModifyQuestionView.swift */,
+				29E859902C93887D008BA34E /* EditQuestionView.swift */,
 			);
 			path = StartSceneViews;
 			sourceTree = "<group>";
@@ -218,7 +218,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				296ED5EB2C9382320047544C /* ModifyQuestionView.swift in Sources */,
 				29BB97862C5E5A1F0077BD49 /* ScoreScene.swift in Sources */,
 				296488FB2C56E69900FF00E3 /* Quiz.swift in Sources */,
 				2970387A2C5C162100B9ED01 /* GameScene.swift in Sources */,
@@ -228,6 +227,7 @@
 				292A71F82C57DCC50094CAC2 /* StartScene.swift in Sources */,
 				296488FD2C56E96300FF00E3 /* QuizArrayViewModel.swift in Sources */,
 				296488EA2C56E5EA00FF00E3 /* The_Quiz_AppApp.swift in Sources */,
+				29E859912C93887D008BA34E /* EditQuestionView.swift in Sources */,
 				2970387D2C5C1C3000B9ED01 /* AnswerPresenterView.swift in Sources */,
 				29DB480F2C91E206001A3C22 /* AddButtonStyle.swift in Sources */,
 				292A71FA2C57DD680094CAC2 /* AppColor.swift in Sources */,
