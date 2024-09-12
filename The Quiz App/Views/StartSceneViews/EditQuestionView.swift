@@ -44,8 +44,8 @@ struct EditQuestionView: View {
                     
                     Section("Correct Answer") {
                         Picker("", selection: $question.correctAnswer) {
-                            ForEach(question.answers) { answer in
-                                Text(answer.answerText)
+                            ForEach(question.pickerProvider, id: \.self) { answer in
+                                Text(answer)
                             }
                         }
                         .labelsHidden()
@@ -65,6 +65,7 @@ struct EditQuestionView: View {
                 }
             }
         }
+        .toolbarBackground(.ultraThinMaterial, for: .automatic)
     }
 }
 

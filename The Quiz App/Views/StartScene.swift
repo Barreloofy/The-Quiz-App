@@ -56,6 +56,7 @@ struct StartScene: View {
                 }
             }
             .tint(AppColor.accent)
+            .toolbarBackground(.ultraThinMaterial, for: .automatic)
             .navigationBarBackButtonHidden()
         }
     }

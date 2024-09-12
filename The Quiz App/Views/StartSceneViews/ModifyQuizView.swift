@@ -57,6 +57,7 @@ struct ModifyQuizView: View {
                     }
                 }
             }
+            .toolbarBackground(.ultraThinMaterial, for: .automatic)
         }
     }
 }

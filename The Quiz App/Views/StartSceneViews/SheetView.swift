@@ -61,6 +61,7 @@ struct SheetView: View {
                     }
                 }
             }
+            .toolbarBackground(.ultraThinMaterial, for: .automatic)
         }
     }
 }

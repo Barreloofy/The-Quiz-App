@@ -19,7 +19,7 @@ struct AnswerPresenterView: View {
             LazyVGrid(columns: columns, spacing: 10) {
                 ForEach(question.answers) { answer in
                     Text(answer.answerText)
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding(5)
                         .border(AppColor.gradient, width: 3)
                         .padding(5)
