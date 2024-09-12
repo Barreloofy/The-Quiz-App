@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SheetView: View {
     
-    @EnvironmentObject private var quizData: QuizData
+    @EnvironmentObject private var viewModel: QuizArrayViewModel
     @Binding var isShowingSheet: Bool
     @Environment(\.dismiss) private var dismiss
     var body: some View {
@@ -17,18 +17,18 @@ struct SheetView: View {
             ZStack {
                 AppColor.background.ignoresSafeArea()
                 VStack {
-                    if !quizData.empty {
+                    if !viewModel.empty {
                         List {
-                            ForEach(quizData.quizArray) { quiz in
+                            ForEach(viewModel.quizArray) { quiz in
                                 NavigationLink("\(quiz.title.isEmpty ? "New Quiz" : quiz.title)") {
                                     ModifyQuizView(quiz: quiz)
                                 }
                             }
                             .onDelete(perform: { indexSet in
-                                quizData.remove(indexSet)
+                                viewModel.remove(indexSet)
                             })
                             .listRowBackground(AppColor.accent.blur(radius: 50))
-                            AddButton(title: "Add Quiz", action: { quizData.add() })
+                            AddButton(title: "Add Quiz", action: { viewModel.add() })
                             .listRowBackground(Color.clear)
                         }
                         .scrollContentBackground(.hidden)
@@ -40,7 +40,7 @@ struct SheetView: View {
                                 .multilineTextAlignment(.center)
                                 .font(.system(size: 35))
                                 .bold()
-                            AddButton(title: "Add Quiz", action: { quizData.add() })
+                            AddButton(title: "Add Quiz", action: { viewModel.add() })
                             .padding()
                             Spacer()
                             Spacer()
@@ -67,5 +67,5 @@ struct SheetView: View {
 
 #Preview {
     SheetView(isShowingSheet: .constant(true))
-        .environmentObject(QuizData())
+        .environmentObject(QuizArrayViewModel())
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameScene: View {
     
-    @StateObject var gameData: GameData
+    @StateObject var viewModel: GameViewModel
     @State private var loggedAnswer: String? = nil
     @State private var presentScore = false
     
@@ -21,18 +21,18 @@ struct GameScene: View {
                 VStack {
                     VStack {
                         HStack {
-                            Text("\(gameData.questionCount + 1)")
-                                .onChange(of: gameData.questionCount) {
+                            Text("\(viewModel.questionCount + 1)")
+                                .onChange(of: viewModel.questionCount) {
                                     loggedAnswer = nil
                                 }
                             Text("/")
-                            Text("\(gameData.quizQuestions.count)")
+                            Text("\(viewModel.questions.count)")
                         }
                         .font(.system(size: 20))
                         .bold()
                         .padding(.top, 75)
                         
-                        Text(gameData.currentQuestion.questionTitle)
+                        Text(viewModel.currentQuestion.questionTitle)
                             .font(.system(size: 35))
                             .bold()
                             .multilineTextAlignment(.center)
@@ -42,27 +42,28 @@ struct GameScene: View {
                     
                     Spacer()
                     
-                    AnswerPresenterView(question: gameData.currentQuestion, loggedAnswer: $loggedAnswer)
+                    AnswerPresenterView(question: viewModel.currentQuestion, loggedAnswer: $loggedAnswer)
                         .frame(maxHeight: 300)
                         .padding(.bottom, 10)
                     
-                    if presentScore {
-                        NavigationLink(destination: ScoreScene().environmentObject(gameData)) {
-                            Text("Score")
-                                .bold()
+                    Group {
+                        if presentScore {
+                            NavigationLink(destination: ScoreScene().environmentObject(viewModel)) {
+                                Text("Score")
+                            }
+                        } else {
+                            Button(action: {
+                                viewModel.increment(loggedAnswer)
+                                presentScore = viewModel.increment()
+                            }) {
+                                Text("Next")
+                                    .opacity(loggedAnswer != nil ? 1 : 0.5)
+                                    .foregroundStyle(loggedAnswer != nil ? .black : .gray)
+                            }
                         }
-                    } else {
-                        Button(action: {
-                            gameData.increment(loggedAnswer)
-                            presentScore = gameData.increment()
-                        }) {
-                            Text("Next")
-                                .bold()
-                                .opacity(loggedAnswer != nil ? 1 : 0.5)
-                                .foregroundStyle(loggedAnswer != nil ? .black : .gray)
-                        }
-                        .padding(.bottom, 10)
                     }
+                    .bold()
+                    .padding(.bottom, 10)
                 }
                 .padding()
             }
@@ -73,5 +74,5 @@ struct GameScene: View {
 }
 
 #Preview {
-    GameScene(gameData: GameData(currentQuiz: QuizModel(title: "Test Quiz", questions: [Question(questionTitle: "Test Question", answers: [Answer(answerText: "Yes"),Answer(answerText: "No")], correctAnswer: "Yes")])))
+    GameScene(viewModel: GameViewModel())
 }

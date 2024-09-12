@@ -10,13 +10,13 @@ import SwiftUI
 @main
 struct The_Quiz_AppApp: App {
     
-    @StateObject private var quizData = QuizData()
+    @StateObject private var viewModel = QuizArrayViewModel()
     var body: some Scene {
         WindowGroup {
             StartScene()
-                .environmentObject(quizData)
+                .environmentObject(viewModel)
                 .onAppear {
-                    quizData.load()
+                    viewModel.load()
                 }
         }
     }

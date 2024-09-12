@@ -9,27 +9,27 @@ import SwiftUI
 
 struct ScoreScene: View {
     
-    @EnvironmentObject private var gameData: GameData
+    @EnvironmentObject private var viewModel: GameViewModel
     var body: some View {
         NavigationStack {
             ZStack {
                 AppColor.background.ignoresSafeArea()
                 VStack {
                     HStack {
-                        Text("\(gameData.correctGuessCount)")
+                        Text("\(viewModel.correctGuessCount)")
                         Text("/")
-                        Text("\(gameData.quizQuestions.count)")
+                        Text("\(viewModel.questions.count)")
                     }
                         .padding(.top,100)
                         .bold()
                         .font(.system(size: 20))
-                    Text(gameData.scoreMessage())
+                    Text(viewModel.scoreMessage())
                         .padding(5)
                         .bold()
                         .font(.system(size: 20))
                         .underline()
                     Spacer()
-                    NavigationLink(destination: GameScene(gameData: GameData(currentQuiz: gameData.currentQuiz))) {
+                    NavigationLink(destination: GameScene(viewModel: GameViewModel(currentQuiz: viewModel.currentQuiz))) {
                         Text("Play again!")
                             .bold()
                             .font(.system(size: 25))
@@ -52,5 +52,5 @@ struct ScoreScene: View {
 
 #Preview {
     ScoreScene()
-        .environmentObject(GameData(currentQuiz: QuizModel()))
+        .environmentObject(GameViewModel(currentQuiz: Quiz()))
 }

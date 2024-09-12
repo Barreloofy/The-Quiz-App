@@ -9,17 +9,17 @@ import SwiftUI
 
 struct StartScene: View {
     
-    @EnvironmentObject private var quizData: QuizData
+    @EnvironmentObject private var viewModel: QuizArrayViewModel
     @State private var isShowingSheet = false
     var body: some View {
         NavigationStack {
             ZStack {
                 AppColor.background.ignoresSafeArea()
-                if !quizData.validQuizArray.isEmpty {
+                if !viewModel.validQuizArray.isEmpty {
                     List {
-                        ForEach(quizData.validQuizArray) { quiz in
+                        ForEach(viewModel.validQuizArray) { quiz in
                             NavigationLink("\(quiz.title)") {
-                                GameScene(gameData: GameData(currentQuiz: quiz))
+                                GameScene(viewModel: GameViewModel(currentQuiz: quiz))
                             }
                         }
                         .listRowBackground(AppColor.accent.blur(radius: 50))
@@ -63,5 +63,5 @@ struct StartScene: View {
 
 #Preview {
     StartScene()
-        .environmentObject(QuizData())
+        .environmentObject(QuizArrayViewModel())
 }

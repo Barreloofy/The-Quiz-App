@@ -1,5 +1,5 @@
 //
-//  GameData.swift
+//  GameViewModel.swift
 //  The Quiz App
 //
 //  Created by Nils on 7/28/24.
@@ -7,26 +7,26 @@
 
 import Foundation
 
-class GameData: ObservableObject {
+class GameViewModel: ObservableObject {
     
     @Published private(set) var questionCount = 0
     private(set) var correctGuessCount = 0
-    let currentQuiz: QuizModel
+    let currentQuiz: Quiz
     
-    var quizQuestions: [Question] {
+    var questions: [Question] {
         currentQuiz.questions
     }
     
     var currentQuestion: Question {
-        quizQuestions[questionCount]
+        questions[questionCount]
     }
     
-    private var quizCorrectAnswer: String {
-        quizQuestions[questionCount].correctAnswer
+    private var correctAnswer: String {
+        questions[questionCount].correctAnswer
     }
     
     func increment() -> Bool {
-        if questionCount < quizQuestions.count-1 {
+        if questionCount < questions.count-1 {
             questionCount += 1
             return false
         } else {
@@ -36,13 +36,13 @@ class GameData: ObservableObject {
     
     func increment(_ loggedAnswer: String?) {
         guard let answer = loggedAnswer else { return }
-        if answer == quizCorrectAnswer {
+        if answer == correctAnswer {
             correctGuessCount += 1
         }
     }
     
     func scoreMessage() -> String {
-        let score = Double(correctGuessCount) / Double(quizQuestions.count)
+        let score = Double(correctGuessCount) / Double(questions.count)
         switch score {
         case 1.0:
             return "Perfect score!"
@@ -57,7 +57,15 @@ class GameData: ObservableObject {
         }
     }
     
-    init(currentQuiz: QuizModel) {
+    init(currentQuiz: Quiz) {
         self.currentQuiz = currentQuiz
     }
 }
+
+#if DEBUG
+extension GameViewModel {
+    convenience init() {
+        self.init(currentQuiz: Quiz.testQuiz)
+    }
+}
+#endif
