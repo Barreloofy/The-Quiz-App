@@ -11,21 +11,25 @@ struct AnswerPresenterView: View {
     
     var question: Question
     @Binding var loggedAnswer: String?
+    
+    private let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 2)
+    
     var body: some View {
-        LazyHGrid(rows: Array(repeating: GridItem(.fixed(50)), count: 2)) {
-            ForEach(question.answers) { answer in
-                Text(answer.answerText)
-                    .containerRelativeFrame(.horizontal) { length, _ in
-                        length / 3
-                    }
-                    .padding(5)
-                    .border(AppColor.gradient, width: 3)
-                    .padding(5)
-                    .border(loggedAnswer == answer.answerText ? .black : .clear, width: 2)
-                    .onTapGesture {
-                        loggedAnswer = answer.answerText
-                    }
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(question.answers) { answer in
+                    Text(answer.answerText)
+                        .frame(maxWidth: .infinity)
+                        .padding(5)
+                        .border(AppColor.gradient, width: 3)
+                        .padding(5)
+                        .border(loggedAnswer == answer.answerText ? .black : .clear, width: 2)
+                        .onTapGesture {
+                            loggedAnswer = answer.answerText
+                        }
+                }
             }
+            .padding()
         }
     }
 }
