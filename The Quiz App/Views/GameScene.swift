@@ -50,6 +50,11 @@ struct GameScene: View {
                         if presentScore {
                             NavigationLink(destination: ScoreScene().environmentObject(viewModel)) {
                                 Text("Score")
+                                    .padding(10)
+                                    .frame(maxWidth: .infinity)
+                                    .background(.black)
+                                    .foregroundStyle(.white)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         } else {
                             Button(action: {
@@ -57,9 +62,9 @@ struct GameScene: View {
                                 presentScore = viewModel.increment()
                             }) {
                                 Text("Next")
-                                    .opacity(loggedAnswer != nil ? 1 : 0.5)
-                                    .foregroundStyle(loggedAnswer != nil ? .black : .gray)
                             }
+                            .buttonStyle(AddButtonStyle(base: .black, accent: .white, blur: 0, effect: false))
+                            .opacity(loggedAnswer != nil ? 1 : 0.5)
                         }
                     }
                     .bold()

@@ -40,6 +40,7 @@ struct ModifyQuizView: View {
                 }
                 .scrollContentBackground(.hidden)
                 .listRowSpacing(10)
+                .shadow(radius: 30)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

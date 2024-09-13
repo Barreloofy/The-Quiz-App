@@ -29,17 +29,26 @@ struct ScoreScene: View {
                         .font(.system(size: 20))
                         .underline()
                     Spacer()
-                    NavigationLink(destination: GameScene(viewModel: GameViewModel(currentQuiz: viewModel.currentQuiz))) {
-                        Text("Play again!")
-                            .bold()
-                            .font(.system(size: 25))
+                    
+                    Button(action: {}) {
+                        NavigationLink(destination: GameScene(viewModel: GameViewModel(currentQuiz: viewModel.currentQuiz))) {
+                            Text("Play again!")
+                                .bold()
+                                .font(.system(size: 25))
+                        }
                     }
                     .padding(25)
-                    NavigationLink(destination: StartScene()) {
-                        Text("Home")
-                            .bold()
-                            .font(.system(size: 25))
+                    .buttonStyle(SimpleButtonStyle(tint: .white, decoration: true))
+                    
+                    Button(action: {}) {
+                        NavigationLink(destination: StartScene()) {
+                            Text("Home")
+                                .bold()
+                                .font(.system(size: 25))
+                        }
                     }
+                    .buttonStyle(SimpleButtonStyle(tint: .white, decoration: true))
+                    
                     Spacer()
                     Spacer()
                 }

@@ -12,6 +12,7 @@ struct SheetView: View {
     @EnvironmentObject private var viewModel: QuizArrayViewModel
     @Binding var isShowingSheet: Bool
     @Environment(\.dismiss) private var dismiss
+    @State private var isPressed = true
     var body: some View {
         NavigationStack {
             ZStack {
@@ -20,19 +21,21 @@ struct SheetView: View {
                     if !viewModel.empty {
                         List {
                             ForEach(viewModel.quizArray) { quiz in
-                                NavigationLink("\(quiz.title.isEmpty ? "New Quiz" : quiz.title)") {
-                                    ModifyQuizView(quiz: quiz)
+                                NavigationLink(destination: ModifyQuizView(quiz: quiz)) {
+                                    Text("\(quiz.title.isEmpty ? "New Quiz" : quiz.title)")
                                 }
                             }
                             .onDelete(perform: { indexSet in
                                 viewModel.remove(indexSet)
                             })
-                            .listRowBackground(AppColor.accent.blur(radius: 50))
+                                .listRowBackground(AppColor.accent.blur(radius: 50))
+                            
                             AddButton(title: "Add Quiz", action: { viewModel.add() })
-                            .listRowBackground(Color.clear)
+                                .listRowBackground(Color.clear)
                         }
                         .scrollContentBackground(.hidden)
                         .listRowSpacing(10)
+                        .shadow(radius: 30)
                     } else {
                         VStack {
                             Spacer()
@@ -42,6 +45,7 @@ struct SheetView: View {
                                 .bold()
                             AddButton(title: "Add Quiz", action: { viewModel.add() })
                             .padding()
+                            .shadow(radius: 30)
                             Spacer()
                             Spacer()
                         }
@@ -70,3 +74,10 @@ struct SheetView: View {
     SheetView(isShowingSheet: .constant(true))
         .environmentObject(QuizArrayViewModel())
 }
+
+
+/*
+ NavigationLink(destination: ModifyQuizView(quiz: quiz)) {
+     Text("\(quiz.title.isEmpty ? "New Quiz" : quiz.title)")
+ }
+ */

@@ -56,6 +56,7 @@ struct EditQuestionView: View {
                 .listRowBackground(AppColor.accent.blur(radius: 50))
             }
             .scrollContentBackground(.hidden)
+            .shadow(radius: 30)
         }
         .navigationBarBackButtonHidden()
         .toolbar {

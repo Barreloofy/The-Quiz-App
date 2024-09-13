@@ -53,6 +53,8 @@ struct StartScene: View {
                     .sheet(isPresented: $isShowingSheet) {
                         SheetView(isShowingSheet: $isShowingSheet)
                     }
+                    .shadow(radius: 10)
+                    .buttonStyle(SimpleButtonStyle(tint: AppColor.accent))
                 }
             }
             .tint(AppColor.accent)

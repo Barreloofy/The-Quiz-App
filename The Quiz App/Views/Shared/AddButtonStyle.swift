@@ -9,15 +9,19 @@ import SwiftUI
 
 struct AddButtonStyle: ButtonStyle {
     
+    var base = AppColor.accent
+    var accent = Color.black
+    var blur: CGFloat = 50
+    var effect = true
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(10)
             .frame(maxWidth: .infinity)
-            .background(AppColor.accent.blur(radius: 50))
-            .foregroundStyle(.black)
+            .background(base.blur(radius: blur))
+            .foregroundStyle(accent)
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            .scaleEffect(configuration.isPressed ? 1.1 : 1.0)
-        
+            .scaleEffect(effect ? (configuration.isPressed ? 1.1 : 1.0) : 1 )
     }
 }
 

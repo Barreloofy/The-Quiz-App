@@ -21,9 +21,22 @@ struct AnswerPresenterView: View {
                     Text(answer.answerText)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding(5)
-                        .border(AppColor.gradient, width: 3)
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .strokeBorder(style: StrokeStyle())
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Material.ultraThin)
+                                        .opacity(0.3)
+                                }
+                        }
                         .padding(5)
-                        .border(loggedAnswer == answer.answerText ? .black : .clear, width: 2)
+                        .shadow(
+                            color: loggedAnswer == answer.answerText ? AppColor.accent.opacity(0.5) : .clear,
+                            radius: loggedAnswer == answer.answerText ? 15 : 0,
+                            x: 0,
+                            y: 0)
+                        .scaleEffect(loggedAnswer == answer.answerText ? 1.1 : 1.0 )
                         .onTapGesture {
                             loggedAnswer = answer.answerText
                         }
