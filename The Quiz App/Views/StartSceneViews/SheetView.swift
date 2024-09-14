@@ -12,7 +12,7 @@ struct SheetView: View {
     @EnvironmentObject private var viewModel: QuizArrayViewModel
     @Binding var isShowingSheet: Bool
     @Environment(\.dismiss) private var dismiss
-    @State private var isPressed = true
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -74,10 +74,3 @@ struct SheetView: View {
     SheetView(isShowingSheet: .constant(true))
         .environmentObject(QuizArrayViewModel())
 }
-
-
-/*
- NavigationLink(destination: ModifyQuizView(quiz: quiz)) {
-     Text("\(quiz.title.isEmpty ? "New Quiz" : quiz.title)")
- }
- */

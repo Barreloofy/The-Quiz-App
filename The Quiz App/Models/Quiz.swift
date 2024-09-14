@@ -36,7 +36,22 @@ struct Question: Identifiable,Codable {
     var id = UUID()
     
     var questionTitle: String
-    var answers: [Answer]
+    var answers: [Answer]  {
+        didSet {
+            guard !answers.isEmpty else { return }
+            
+            guard let firstAnswer = answers.first else { return }
+            for answer in answers {
+                if answer.answerText == correctAnswer {
+                    return
+                } else {
+                    continue
+                }
+            }
+            correctAnswer = firstAnswer.answerText
+        }
+    }
+    
     var correctAnswer: String
     
     var pickerProvider: [String] {
