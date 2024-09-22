@@ -54,10 +54,10 @@ struct StartScene: View {
                         SheetView(isShowingSheet: $isShowingSheet)
                     }
                     .shadow(radius: 10)
-                    .buttonStyle(SimpleButtonStyle(tint: AppColor.accent))
+                    .buttonStyle(SimpleButtonStyle(tint: Color.black))
                 }
             }
-            .tint(AppColor.accent)
+            .tint(.black)
             .toolbarBackground(.ultraThinMaterial, for: .automatic)
             .navigationBarBackButtonHidden()
         }

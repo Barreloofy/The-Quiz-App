@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct AppColor {
-    static let background = LinearGradient(colors: [.white,.orange], startPoint: .topLeading, endPoint: .bottomTrailing)
-    static let accent = Color(red: 205 / 255, green: 133 / 255, blue: 63 / 255)
-    static let gradient = LinearGradient(stops: [.init(color: .white.opacity(0.3), location: 0),.init(color: .orange.opacity(0.5), location: 0.4),.init(color: .orange, location: 0.5)], startPoint: .topLeading, endPoint: .bottomTrailing)
+    static let pantone = Color(red: 145 / 255, green: 140 / 255, blue: 126 / 255)
+    static let parchment = Color(red: 241 / 255, green: 233 / 255, blue: 210 / 255)
+    static let background = parchment
+    static let accent = pantone
 }
