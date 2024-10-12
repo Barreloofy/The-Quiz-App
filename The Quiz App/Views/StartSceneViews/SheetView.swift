@@ -35,7 +35,7 @@ struct SheetView: View {
                         }
                         .scrollContentBackground(.hidden)
                         .listRowSpacing(10)
-                        .shadow(radius: 30)
+                        .shadow(radius: 40)
                     } else {
                         VStack {
                             Spacer()

@@ -9,6 +9,7 @@ import Foundation
 
 class GameViewModel: ObservableObject {
     
+    @Published var dismiss = false
     @Published private(set) var questionCount = 0
     private(set) var correctGuessCount = 0
     let currentQuiz: Quiz
@@ -46,11 +47,11 @@ class GameViewModel: ObservableObject {
         switch score {
         case 1.0:
             return "Perfect score!"
-        case 0.8...0.99:
+        case 0.8..<1.0:
             return "Great job!"
-        case 0.5...0.79:
+        case 0.5..<0.8:
             return "Good effort!"
-        case 0.0...0.49:
+        case 0.0..<0.5:
             return "Keep trying!"
         default:
             return "Invalid score"

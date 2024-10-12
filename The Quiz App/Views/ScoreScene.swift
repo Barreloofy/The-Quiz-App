@@ -40,14 +40,17 @@ struct ScoreScene: View {
                     .padding(25)
                     .buttonStyle(SimpleButtonStyle(tint: .white, decoration: true))
                     
-                    Button(action: {}) {
-                        NavigationLink(destination: StartScene()) {
-                            Text("Home")
-                                .bold()
-                                .font(.system(size: 25))
-                        }
+                    Button {
+                        viewModel.dismiss = true
+                    } label: {
+                        Text("Home")
+                            .bold()
+                            .font(.system(size: 25))
                     }
                     .buttonStyle(SimpleButtonStyle(tint: .white, decoration: true))
+                    .navigationDestination(isPresented: $viewModel.dismiss) {
+                        StartScene()
+                    }
                     
                     Spacer()
                     Spacer()

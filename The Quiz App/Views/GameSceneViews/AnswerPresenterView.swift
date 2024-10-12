@@ -33,7 +33,7 @@ struct AnswerPresenterView: View {
                         .padding(5)
                         .shadow(
                             color: loggedAnswer == answer.answerText ? AppColor.accent.opacity(0.35) : .clear,
-                            radius: loggedAnswer == answer.answerText ? 10 : 0,
+                            radius: loggedAnswer == answer.answerText ? 7.5 : 0,
                             x: 0,
                             y: 0)
                         .scaleEffect(loggedAnswer == answer.answerText ? 1.1 : 1.0 )

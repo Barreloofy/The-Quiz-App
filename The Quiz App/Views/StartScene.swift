@@ -53,7 +53,7 @@ struct StartScene: View {
                     .sheet(isPresented: $isShowingSheet) {
                         SheetView(isShowingSheet: $isShowingSheet)
                     }
-                    .shadow(radius: 10)
+                    .shadow(radius: 15)
                     .buttonStyle(SimpleButtonStyle(tint: Color.black))
                 }
             }
